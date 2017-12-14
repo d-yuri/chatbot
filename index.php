@@ -53,7 +53,7 @@ if (in_array($user_message, $pic) || !empty($matchpic[0])) {
      //$name = 'gif';
      //file_put_contents($name.'.gif',file_get_contents($gif));
      $url = 'https://api.telegram.org/bot'.$token.'/sendMessage?chat_id='.$user_id.'&text='.$gif;
-     $url = 'https://api.telegram.org/bot'.$token.'/sendDocument?chat_id='.$user_id.'&document='.$gif;
+     $url = 'https://api.telegram.org/bot'.$token.'/sendDocument?chat_id='.$user_id.'&document='.$gif.'.gif';
 
 
 } else {
