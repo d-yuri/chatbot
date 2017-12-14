@@ -47,16 +47,14 @@ if (in_array($user_message, $pic) || !empty($matchpic[0])) {
     $photo = file_get_contents('http://vk-send.tk/get-photo.php');
      $url = 'https://api.telegram.org/bot'.$token.'/sendPhoto?chat_id='.$user_id.'&photo='.$photo;
 } elseif (in_array($user_message, $gif) || !empty($matchgif[0])) {
-     //. '&message=' . urlencode('гифка')
-     $gif = $db->getPostByUserId('gif', $countPost);
-     foreach ($gif as $ph) {
-          $sqr[] = 'doc' . $ph['owner_id'] . '_' . $ph['vk_item_id'] . '_' . $ph['access_key'];
-     }
-     $sqr = implode(',', $sqr);
-     $arapi = 'random_id=' . $data->object->id . '&user_id=' . $user_id . '&attachment=' . $sqr;//. '&message=' . urlencode('фото')
 
-     $vk->curlGet('messages.send?' . $arapi);
-     file_put_contents('gif.txt', $user_message . '-' . $user_id . '-' . date('d.m.Y H:i:s') . "\n", 8);
+     $gif = file_get_contents('http://vk-send.tk/get-photo.php');
+     $name = $gif[0]['owner_id'].'_'.$gif[0]['vk_item_id'].'_'.$gif[0]['access_key'];
+     file_put_contents($name.'.gif',file_get_contents($gif[0]['preview_gif']));
+     $url = 'https://api.telegram.org/bot'.$token.'/sendMessage?chat_id='.$user_id.'&text='.$name;
+     //$url = 'https://api.telegram.org/bot'.$token.'/sendDocument?chat_id='.$user_id.'&document='.$gif;
+
+
 } else {
      file_put_contents('words.txt', $user_message . '-' . $user_id . '-' . date('d.m.Y H:i:s') . "\n", 8);
 }
