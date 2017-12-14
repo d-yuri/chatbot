@@ -48,7 +48,7 @@ if (in_array($user_message, $pic) || !empty($matchpic[0])) {
      $url = 'https://api.telegram.org/bot'.$token.'/sendPhoto?chat_id='.$user_id.'&photo='.$photo;
 } elseif (in_array($user_message, $gif) || !empty($matchgif[0])) {
 
-     $gif = file_get_contents('http://vk-send.tk/get-photo.php');
+     $gif = file_get_contents('http://vk-send.tk/get-gif.php');
      //$name = $gif[0]['owner_id'].'_'.$gif[0]['vk_item_id'].'_'.$gif[0]['access_key'];
      //$name = 'gif';
      //file_put_contents($name.'.gif',file_get_contents($gif));
