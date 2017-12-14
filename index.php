@@ -54,9 +54,14 @@ if (in_array($user_message, $pic) || !empty($matchpic[0])) {
      //file_put_contents($name.'.gif',file_get_contents($gif));
      $url = 'https://api.telegram.org/bot'.$token.'/sendMessage?chat_id='.$user_id.'&text='.$gif;
      $url = 'https://api.telegram.org/bot'.$token.'/sendDocument?chat_id='.$user_id.'&document='.$gif.'.gif';
-     file_get_contents('http://vk-send.tk/get-gif.php?delet='.$gif.'.gif');
+
+
 
 } else {
      file_put_contents('words.txt', $user_message . '-' . $user_id . '-' . date('d.m.Y H:i:s') . "\n", 8);
 }
 file_get_contents($url);
+
+if(in_array($user_message, $gif) || !empty($matchgif[0])){
+     file_get_contents('http://vk-send.tk/get-gif.php?delet='.$gif.'.gif');
+}
