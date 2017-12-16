@@ -43,6 +43,7 @@ $countPost = 1;
 if (!empty($number)) {
      $countPost = intval($number[0]);
 }
+$isGif = false;
 if (in_array($user_message, $pic) || !empty($matchpic[0])) {
     $photo = file_get_contents('http://vk-send.tk/get-photo.php');
      $url = 'https://api.telegram.org/bot'.$token.'/sendPhoto?chat_id='.$user_id.'&photo='.$photo;
@@ -52,9 +53,9 @@ if (in_array($user_message, $pic) || !empty($matchpic[0])) {
      //$name = $gif[0]['owner_id'].'_'.$gif[0]['vk_item_id'].'_'.$gif[0]['access_key'];
      //$name = 'gif';
      //file_put_contents($name.'.gif',file_get_contents($gif));
-     $url = 'https://api.telegram.org/bot'.$token.'/sendMessage?chat_id='.$user_id.'&text='.$gif;
+     //$url = 'https://api.telegram.org/bot'.$token.'/sendMessage?chat_id='.$user_id.'&text='.$gif;
      $url = 'https://api.telegram.org/bot'.$token.'/sendDocument?chat_id='.$user_id.'&document='.$gif.'.gif';
-
+     $isGif = true;
 
 
 } else {
@@ -62,6 +63,6 @@ if (in_array($user_message, $pic) || !empty($matchpic[0])) {
 }
 file_get_contents($url);
 
-if(in_array($user_message, $gif) || !empty($matchgif[0])){
+if($isGif){
      file_get_contents('http://vk-send.tk/get-gif.php?delet='.$gif.'.gif');
 }
